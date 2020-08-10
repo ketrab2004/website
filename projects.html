@@ -32,32 +32,15 @@
 var projectList = document.getElementById("projectGrid")
 
 var projectArr = [
-    "roblox_infinite_terrain",
-    "hangman"
+    ["roblox_infinite_terrain", "Roblox Infinite Terrain", "7/14/2020"],
+    ["hangman", "HTML5 Hangman", "13/3/2020"]
 ];
 
-function getText(folder){
-    // read text from URL location
-    var request = new XMLHttpRequest();
-    request.open('GET', folder, true);
-    request.send(null);
-    request.onreadystatechange = function () {
-        if (request.readyState === 4 && request.status === 200) {
-            var type = request.getResponseHeader('Content-Type');
-            if (type.indexOf("text") !== 1) {
-                return request.responseText;
-            }
-        }
-    }
-}
-
-projectArr.forEach(function(item, i, arr) {
+projectArr.forEach(function(lis, i, arr) {
     //alert(item, i)
-    var current = window.location.href
-    current = current.slice(0, current.length-14)
-    var folder = current+"/projects/"+item+"/Info.txt"
-    var text = getText(folder)
-    alert(text)
+    var fol = lis[1]
+    var nam = lis[2]
+    var dat = lis[3]
 })
 
 </script>

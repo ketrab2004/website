@@ -1,5 +1,10 @@
 h1 {
-    color: blueviolet;
+    color: whitesmoke;
+    font-family: "Arial Black", Gadget, sans-serif;
+}
+d {
+    color: whitesmoke;
+    font-family: sans-serif;
 }
 
 body {
@@ -31,3 +36,18 @@ body {
     background-color: #6b796c;
     color: white;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: #919094;
+    border: 3px solid #272729;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+  }

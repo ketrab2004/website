@@ -6,10 +6,58 @@
 <body>
 
 <div class="topnav">
-    <a href="index.htm;">Home</a>
+    <a href="index.html">Home</a>
     <a class="active" href="projects.html">Projects</a>
     <a href="about.html">About</a>
 </div>
 
+<h1>Projects</h1>
+
+<div class="grid-container" id="projectGrid">
+    <div class="grid-item">1</div>
+    <div class="grid-item">2</div>
+    <div class="grid-item">3</div>  
+    <div class="grid-item">4</div>  
+    <div class="grid-item">5</div>  
+    <div class="grid-item">6</div>  
+    <div class="grid-item">7</div>  
+    <div class="grid-item">8</div>  
+</div>
+
 </body>
 </html>
+
+<script>
+
+var projectList = document.getElementById("projectGrid")
+
+var projectArr = [
+    "roblox_infinite_terrain",
+    "hangman"
+];
+
+function getText(folder){
+    // read text from URL location
+    var request = new XMLHttpRequest();
+    request.open('GET', folder, true);
+    request.send(null);
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            var type = request.getResponseHeader('Content-Type');
+            if (type.indexOf("text") !== 1) {
+                return request.responseText;
+            }
+        }
+    }
+}
+
+projectArr.forEach(function(item, i, arr) {
+    //alert(item, i)
+    var current = window.location.href
+    current = current.slice(0, current.length-14)
+    var folder = current+"/projects/"+item+"/Info.txt"
+    var text = getText(folder)
+    alert(text)
+})
+
+</script>

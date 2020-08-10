@@ -1,0 +1,33 @@
+h1 {
+    color: blueviolet;
+}
+
+body {
+    background-color: #424246;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #343435;
+}
+.topnav a {
+    float: left;
+    text-align: center;
+    padding: 20px 25px;
+    font-size: 17px;
+    font-family: monospace;
+    text-decoration: #53535f;
+    color: #f2f2f2;
+}
+@keyframes hover {
+    from {background-color: currentColor;}
+    to {background-color: #9b9aa8;}
+}
+.topnav a:hover {
+    color: black;
+    background-color: #9b9aa8;
+}
+.topnav a.active {
+    background-color: #6b796c;
+    color: white;
+}

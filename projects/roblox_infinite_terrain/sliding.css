@@ -1,0 +1,27 @@
+#r1:checked ~ .s1{
+    margin-left: 0;
+}
+#r2:checked ~ .s2{
+    margin-left: -11.11111%;
+}
+#r3:checked ~ .s3{
+    margin-left: -22.22222%;
+}
+#r4:checked ~ .s4{
+    margin-left: -33.33333%;
+}
+#r5:checked ~ .s5{
+    margin-left: -44.44444%;
+}
+#r6:checked ~ .s6{
+    margin-left: -55.55555%;
+}
+#r7:checked ~ .s7{
+    margin-left: -66.66666%;
+}
+#r8:checked ~ .s8{
+    margin-left: -77.77777%;
+}
+#r9:checked ~ .s9{
+    margin-left: -88.88888%;
+}

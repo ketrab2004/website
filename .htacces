@@ -1,0 +1,10 @@
+# Custom 404 file not found page
+
+# ErrorDocument  404 /page404.html
+
+# mod_rewrite starts here
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]

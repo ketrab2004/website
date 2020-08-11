@@ -1,0 +1,52 @@
+/* slidd */
+#slidd {
+    width: 75%;
+    overflow: hidden;
+    margin-bottom: -24px;
+}
+#slid {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+#slid figure {
+    position: relative;
+    width: 900%;
+    margin: 0;
+    left: 0;
+}
+#slid figure img {
+    width: 11.11111%;
+    float: left;
+    border-radius: 0;
+}
+.slid-nav {
+    position: relative;
+    bottom: 44px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+input[name="slid-r"] {
+    position: absolute;
+    visibility: hidden;
+}
+.slid-b {
+    width: 35px;
+    height: 10px;
+    border: 2px solid #d0e8ff;
+    margin: 5px;
+    cursor: pointer;
+    background: #0000003b;
+    transition: .4s;
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+}
+.slid-b:hover {
+    background: #00000081;
+}

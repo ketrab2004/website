@@ -1,0 +1,27 @@
+#r1:checked ~ .slides{
+    transform: translateX(0);
+}
+#r2:checked ~ .slides{
+    transform: translateX(-11.11111%);
+}
+#r3:checked ~ .slides{
+    transform: translateX(-22.22222%);
+}
+#r4:checked ~ .slides{
+    transform: translateX(-33.33333%);
+}
+#r5:checked ~ .slides{
+    transform: translateX(-44.44444%);
+}
+#r6:checked ~ .slides{
+    transform: translateX(-55.55555%);
+}
+#r7:checked ~ .slides{
+    transform: translateX(-66.66666%);
+}
+#r8:checked ~ .slides{
+    transform: translateX(-77.77777%);
+}
+#r9:checked ~ .slides{
+    transform: translateX(-88.88888%);
+}

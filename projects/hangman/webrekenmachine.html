@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<html lang="nl">
+
+<style>
+	body
+		{background-color: lightgreen;}
+	h1
+		{font-family: "Comic Sans MS", cursive, sans-serif;
+		font-size:75px;}
+	p
+		{font-family: Tahoma, Geneva, sans-serif;
+		font-size:20px;}
+	button
+		{font-family: Impact, Charcoal, sans-serif;
+		font-size:25px;}
+	h2
+		{font-family: "Comic Sans MS", cursive, sans-serif;
+		font-size:30px;}
+</style>
+
+<head>
+	<h1 style="font-size:80px;">Javascript Rekenmachine</h1>
+</head>
+
+<body>
+
+<p>Voer een getal in: </p><input id="getalA" type="number" value="0" min="-100" max="100">
+<br>
+
+<p>Voer een tweede getal in: </p><input id="getalB" type="number" value="0" min="-100" max="100">
+<br>
+
+<p for="bewerking">Kies een bewerking:</p>
+<select id="bewerking">
+	<option value="+">Optellen</option>
+	<option value="-">Aftrekken</option>
+	<option value="x">Vermenigvuldigen</option>
+	<option value="/">Delen</option>
+</select>
+
+<br>
+<p>Zelf berekende uitkomst</p><input id="getalC" type="number" value="0">
+
+<br><br>
+
+<button onclick="checkAntwoord()">Check antwoord</button>
+
+<br>
+
+<p id="som"></p>
+
+
+<h2 id="goedOfFout"></h2>
+<image id="image">
+
+<script>
+	var i = document.getElementById("goedOfFout")
+	var p = document.getElementById("image")
+	var s = document.getElementById("som")
+		
+	function correct(){
+		i.style.color = "green";
+		i.innerHTML = "Dat is het juiste antwoord!";
+		p.src = "https://media0.giphy.com/media/ehhuGD0nByYxO/giphy.gif?cid=790b7611a35698e24ba203300a77d26a88a59b4c59cecc3b&rid=giphy.gif";
+	}
+	function incorrect(){
+		i.style.color = "red";
+		i.innerHTML = "Dat is niet het juiste antwoord!";
+		p.src = "";
+	}
+	
+	function checkAntwoord() {
+		var a = parseFloat(document.getElementById("getalA").value)
+		var b = parseFloat(document.getElementById("getalB").value)
+		var c = document.getElementById("getalC").value
+		var t = document.getElementById("bewerking").value
+		
+		if(b==0 && t=="/"){
+			i.style.color = "darkred";
+			i.innerHTML = "Het is niet mogelijk om door 0 te delen";
+			p.src = "https://media1.giphy.com/media/YDj8Ot6mIbJYs/giphy.gif?cid=790b7611645b293ac094817c06324503932b5e024577a08d&rid=giphy.gif";
+			s.innerHTML = a+" "+t+" "+b+" = niet mogelijk"
+		}else if (t=="+"){
+			s.innerHTML = a+" + "+b+" = "+(a+b)
+			if (c == a+b){
+				correct()
+			}else{
+				incorrect()
+			}
+		}else if(t=="-"){
+			s.innerHTML = a+" - "+b+" = "+(a-b)
+			if (c == a-b){
+				correct()
+			}else{
+				incorrect()
+			}
+		}else if(t=="x"){
+			s.innerHTML = a+" x "+b+" = "+(a*b)
+			if (c == a*b){
+				correct()
+			}else{
+				incorrect()
+			}
+		}else if(t=="/"){
+			s.innerHTML = a+" / "+b+" = "+(a/b)
+			if (c == a/b){
+				correct()
+			}else{
+				incorrect()
+			}
+		}
+	}
+	document.getElementById("getalA").onchange = function(){changed(document.getElementById("getalA"))};
+	document.getElementById("getalB").onchange = function(){changed(document.getElementById("getalB"))};
+	function changed(input){
+		var abc = input.value
+		abc = Math.min(abc,100)
+		abc = Math.max(abc,-100)
+		input.value = abc
+	}
+	
+	document.getElementById("getalA").value = Math.round((Math.random()-.5)*200)
+	document.getElementById("getalB").value = Math.round((Math.random()-.5)*200)
+	var be = Math.round(Math.random()*4)
+	switch(be){
+		case 1:
+			document.getElementById("bewerking").value = "+"
+			break;
+		case 2:
+			document.getElementById("bewerking").value = "-"
+			break;
+		case 3:
+			document.getElementById("bewerking").value = "x"
+			break;
+		case 4:
+			document.getElementById("bewerking").value = "/"
+			break;
+	}
+</script>
+
+
+</body>
+</html>

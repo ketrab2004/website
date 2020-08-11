@@ -1,0 +1,26 @@
+/* social buttons */
+.sc-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    padding: 5px;
+    width: 40%;
+    text-align: center;
+  }
+.sc {
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    width: 15px;
+    height: 15px;
+    margin: 5px 5px;
+    border-radius: 0;
+    background-position: center;
+    text-align: center;
+    background-size: cover;
+    transition: .4s;
+}
+.sc:hover {
+    opacity: .5;
+}

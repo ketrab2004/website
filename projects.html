@@ -10,9 +10,9 @@
 <body>
 
 <div class="topnav">
-    <a href="index.html">Home</a>
-    <a class="active" href="projects.html">Projects</a>
-    <a href="about.html">About</a>
+    <a href="">Home</a>
+    <a class="active" href="projects">Projects</a>
+    <a href="about">About</a>
 </div>
 
 <h1>Projects</h1>
@@ -55,7 +55,7 @@ projectArr.forEach(function(lis, i, arr) {
 
     text.innerHTML = name
     text.classList.add("grid-title")
-    text.setAttribute("href", "projects/"+fold+"/index.html")
+    text.setAttribute("href", "projects/"+fold)
     dat.innerHTML = date
     dat.classList.add("grid-date")
 

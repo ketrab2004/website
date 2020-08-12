@@ -1,6 +1,6 @@
 # Custom 404 file not found page
 
-# ErrorDocument  404 /page404.html
+ErrorDocument 404 /projects/404/index.html
 
 # mod_rewrite starts here
 

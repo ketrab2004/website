@@ -1,0 +1,76 @@
+/* top text */
+.top {
+    text-align: center;
+    font-size: 75px;
+    text-shadow: 3px 3px 3px black;
+    margin: 0;
+}
+.mes {
+    text-align: center;
+    font-size: 30px;
+    color: #7b7b86;
+    font-family: monospace;
+    display: block;
+}
+
+/* top buttons */
+.buts {
+    position: absolute;
+    width: 27.5%;
+    margin: 5px;
+    padding: 10px;
+    background-color: #343435;
+    border-radius: 15px;
+}
+.but {
+    margin: 10px 10px;
+    text-align: center;
+    color: #f2f2f2;
+}
+.but:hover {
+    color: black;
+    background-color: #acabbb;
+    transition: .4s;
+}
+
+/* pictures */
+.pic0 {
+    border-radius: 50px;
+    width: 30%;
+    border: 5px solid #2c2c31;
+}
+.pic1Box {
+    display: inline-block;
+    width: 25%;
+    margin-left: 30%;
+    margin-top: -10%;
+}
+.pic1 {
+    width: 100%;
+}
+
+/* magnifier */
+.hold {
+    /* pos */
+    position: relative;
+    height: 75%;
+    width: 75%;
+
+    animation-name: hammertime;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+@keyframes hammertime {
+    0% {transform: translate(-100%, 108%) rotate(-15deg)}
+    7.5% {transform: translate(-100%, 108%) rotate(47.5deg)}
+    12.5% {transform: translate(-100%, 108%) rotate(47.5deg)}
+    15% {transform: translate(-100%, 108%) rotate(45deg)}
+    20% {transform: translate(-100%, 108%) rotate(45deg)}
+    70% {transform: translate(-100%, 108%) rotate(0)}
+    90% {transform: translate(-100%, 108%) rotate(0)}
+    100% {transform: translate(-100%, 108%) rotate(-15deg)}
+}
+.hammer {
+    width: 100%;
+    transform: translateY(-50%) rotate(-45deg);
+}

@@ -1,14 +1,17 @@
 h1 {
     color: whitesmoke;
     font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 40px;
 }
 d {
     color: whitesmoke;
     font-family: sans-serif;
+    font-size: 25px;
 }
 a {
     color: #b0dfe2;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
 }
 img {
     border-radius: 10px;
@@ -18,7 +21,17 @@ body {
     background-color: #424246;
 }
 
-.halve {
-    width: 50%;
+.full {
+    width: 100%;
     text-align: justify;
+}
+.halve {
+    width: 60%;
+    text-align: justify;
+    margin-left: 20%;
+}
+.trird {
+    width: 75%;
+    text-align: justify;
+    margin-left: 12.5%;
 }

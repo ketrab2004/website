@@ -1,7 +1,7 @@
 /* slidd */
 #slidd {
-    width: 75%;
-    overflow: hidden;
+    width: 98%;
+    margin-left: 1%;
     margin-bottom: -24px;
 }
 #slid {
@@ -9,7 +9,9 @@
     height: 100%;
     padding: 0;
     overflow: hidden;
-    border-radius: 10px;
+
+    border: 5px solid #2f2f33;
+    border-radius: 20px;
 }
 #slid figure {
     position: relative;

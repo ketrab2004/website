@@ -1,0 +1,23 @@
+code {
+    border-radius: 10px;
+    border: 2.5px outset #1b1b1b;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+.hljs-ln-numbers {
+    text-align: right;
+    color: #ccc;
+    border-right: 3px #444 solid;
+    vertical-align: top;
+    padding-left: 5px;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.hljs-ln-code {
+    padding-left: 10px;
+}

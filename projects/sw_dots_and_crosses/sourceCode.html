@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html lang="en-GB" style="height:100%;">
+
+<link href="../../css/main.css" rel="stylesheet">
+<link href="../../css/topnav.css" rel="stylesheet">
+<link href="../../css/code.css" rel="stylesheet">
+<link rel="icon" href="../../images/TabIcon.png">
+<meta name="keywords" content="ketrab2004, stormworks, lua, dots and boxes, dots & boxes, dots, boxes, dots and crosses, source, source code, sourcecode, src">
+<title>Dots and Boxes Source Code - ketrab2004</title>
+
+<body>
+
+<div class="topnav">
+    <a href="../../">Home</a>
+    <a href="../../projects">Projects</a>
+    <a href="../../about">About</a>
+</div>
+
+<h1 class="trird">Dots and Boxes for Stormworks unminified source code</h1>
+
+<br><br>
+
+<link rel="stylesheet"
+    href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/darcula.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+
+<div class="trird">
+<pre><code class="lang-lua" style="height: 650px;">i = input
+gN = i.getNumber
+gB = i.getBool
+
+pl={2,2}
+game=nil
+bloc ={}
+h,w=0
+pr,pr2={false,0,0}
+reBut={false,27,9}
+function onTick()
+    w,h = gN(1),gN(2)
+    pr = {gB(1), gN(3),gN(4)}
+    pr2 = {gB(2), gN(5),gN(6)}
+    
+    if turn==0 then
+        if w==96 and h==w then
+            pl={4,4}
+        elseif w==160 and h==96 then
+            pl={7,4}
+        elseif w==288 and h==160 then
+            pl={12,6}
+        else
+            pl={2,2}
+        end
+    end
+    
+    if pr[1] then
+        if (pr[2]>=w-reBut[2]and pr[2]<=w and pr[3]>=0 and pr[3]<=reBut[3]) and reBut[1]~=true then
+            reBut[1] = true
+            if turn == 0 then
+                setupGame()
+                turn = 1	
+            else
+                turn = 0	
+            end
+        end
+    elseif reBut[1]then
+        reBut[1] = false	
+    end
+    
+    if turn==1 or turn==2 then
+        click = pr
+        if pr2[1] then
+            click = pr2
+        end
+        if click[1] then
+            local onX = false
+            for x=1,pl[1] do
+                local line = getLine(x,1,2)
+                if flr(line[1]) == click[2] then
+                    onX = x
+                    break
+                end
+            end
+            if onX ~= false then --vertical
+                --figure out y
+                posY = flr( (click[3]-h/2)/sqSi +((pl[2]-1)/2) +.75)
+                if posY <= pl[2] and posY >= 1 then
+                    if game[onX][posY][2] ==0 then
+                        game[onX][posY][2] = turn; local tr = turn
+                        if turn == 1 then
+                            turn = 2
+                        else
+                            turn = 1
+                        end updateBoxes({onX,posY},2, tr)
+                    end
+                end
+            else
+                local onY = false
+                for y=1,pl[2] do
+                    local line = getLine(1,y,1)
+                    if flr(line[2]) == click[3] then
+                        onY = y
+                        break
+                    end
+                end
+                if onY ~= false then --horizontal
+                    --figure out x
+                    posX = flr( (click[2]-w/2)/sqSi +((pl[1]-1)/2) +.95)
+                    if posX <= pl[1] and posX >= 1 then
+                        if game[posX][onY][1] ==0 then
+                            game[posX][onY][1] = turn; local tr = turn
+                            if turn == 1 then
+                                turn = 2
+                            else
+                                turn = 1
+                            end updateBoxes({posX,onY},1,tr)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+turn = 0
+
+m = math
+flr = m.floor
+s = screen
+c = s.setColor
+function onDraw()
+    c(61, 61, 64)
+    s.drawClear()
+    c(108, 108, 112)
+    s.drawRectF(0,0, w, 9)
+    
+    if reBut[1] then
+        c(40,40,40)
+        s.drawRectF(w-reBut[2],0, reBut[2],reBut[3])
+    end
+    c(0,0,0)
+    s.drawRect(w-reBut[2],0, reBut[2],reBut[3])
+    
+    if turn == 0 then
+        s.drawTextBox(w-reBut[2],0, reBut[2],reBut[3], "Start",0,0)
+        
+        c(0,0,0)
+        s.drawText(2,2,"Press start")
+    elseif turn == 1 then
+        s.drawTextBox(w-reBut[2],0, reBut[2],reBut[3], "Stop",0,0)
+        
+        c(255,0,0)
+        s.drawText(2,2,"Red's turn")
+    elseif turn == 2 then
+        s.drawTextBox(w-reBut[2],0, reBut[2],reBut[3], "Stop",0,0)
+        
+        c(0,0,255)
+        s.drawText(2,2,"Blue's turn")
+    end
+    
+    for _,v in pairs(bloc) do
+        if v[3] == 1 then
+            c(255,0,0,255/5)
+        else
+            c(0,0,255,255/5)
+        end
+        local line = getLine(v[1],v[2],1)
+        s.drawRectF(line[1],line[2], sqSi,sqSi)
+    end
+    
+    for x=1,pl[1] do
+        for y=1,pl[2] do
+            local line = getLine(x,y,1)
+            
+            c(70,70,70)
+            if x~=pl[1] then
+                if game ~= nil then
+                    if game[x][y][1] == 1 then
+                        c(255,0,0)
+                    elseif game[x][y][1] == 2 then
+                        c(0,0,255)
+                    end
+                end
+                s.drawLine(line[1],line[2],line[3],line[4])
+            end
+            c(70,70,70)
+            if y~=pl[2] then
+                if game ~= nil then
+                    if game[x][y][2] == 1 then
+                        c(255,0,0)
+                    elseif game[x][y][2] == 2 then
+                        c(0,0,255)
+                    end
+                end
+                local line2 = getLine(x,y,2)
+                s.drawLine(line2[1],line2[2],line2[3],line2[4])
+            end
+            
+            c(30,30,30)
+            s.drawCircleF(line[1],line[2],2)
+        end
+    end
+    
+    if turn == 3 or turn == 4 or turn == 5 then
+        c(0,0,0)
+        s.drawTextBox(w-reBut[2],0, reBut[2],reBut[3], "End",0,0)
+        s.drawText(2,2,"Game Over")
+        
+        local rect = {w/2-(50/2),h/2-(10/2),50,10}
+        
+        c(75,75,75)
+        s.drawRectF(rect[1],rect[2],rect[3],rect[4])
+        c(0,0,0)
+        s.drawRect(rect[1],rect[2],rect[3],rect[4])
+        
+        if turn == 3 then
+            c(255,0,0)
+            s.drawTextBox(rect[1],rect[2],rect[3],rect[4], "Red wins!", 0,0)
+        elseif turn == 4 then
+            c(0,0,255)
+            s.drawTextBox(rect[1],rect[2],rect[3],rect[4], "Blue wins!", 0,0)
+        else
+            s.drawTextBox(rect[1],rect[2],rect[3],rect[4], "Tie!", 0,0)
+        end
+    end
+    
+    if pr[1]then
+        c(255,0,0)
+        s.drawRectF(pr[2],pr[3],1,1)
+    end
+    if pr2[1]then
+        c(0,0,255)
+        s.drawRectF(pr2[2],pr2[3],1,1)
+    end
+end
+
+function updateBoxes(pos,t,p)
+    if t==1 then --hor
+        local sq1,sq2 = {pos[1], pos[2]-1}, {pos[1],pos[2]}
+        checkBox(sq1,p)
+        checkBox(sq2,p)
+    else --vert
+        local sq1,sq2 = {pos[1]-1, pos[2]}, {pos[1],pos[2]}
+        checkBox(sq1,p)
+        checkBox(sq2,p)
+    end
+end
+function checkBox(pos,p)
+    if pos[1] >= 1 and pos[1] <= pl[1] and pos[2] >= 1 and pos[2] <= pl[2] then
+        if game[pos[1]][pos[2]][1] ~= 0 and game[pos[1]][pos[2]][2] ~= 0 and game[pos[1]][pos[2]+1][1] ~= 0 and game[pos[1]+1][pos[2]][2] ~= 0 then
+            bloc[#bloc+1] = {pos[1],pos[2], p}
+            turn = p
+        end
+    end
+    if #bloc== (pl[1]-1)*(pl[2]-1) then
+        local r,b=0,0
+        for _,v in pairs(bloc) do
+            if v[3] == 1 then
+                r=r+1
+            else
+                b=b+1
+            end
+        end
+        if r>b then
+            turn = 3
+        elseif b>r then
+            turn = 4
+        else
+            turn = 5
+        end
+    end
+end
+
+function setupGame()
+    game={}
+    bloc={}
+    for x=1,pl[1] do
+        local xi = {}
+        for y=1,pl[2] do
+            xi[y] = {0,0}
+        end
+        game[x] = xi
+    end
+end
+
+function getLine(x,y,t)
+    grid = {0,10,w,h-9}
+    sqSi = grid[4]/(pl[2]+.5)
+    
+    cent = {grid[1]+(grid[3]/2), grid[2]+(grid[4]/2)}
+    pint = {cent[1] + x*sqSi - (pl[1]/2+.5)*sqSi, cent[2] + y*sqSi - (pl[2]/2+.5)*sqSi,}
+    pin2 = {}
+    if t == 1 then
+        pin2 = {pint[1] + sqSi, pint[2]}
+    else
+        pin2 = {pint[1], pint[2] + sqSi}
+    end
+    return {pint[1],pint[2], pin2[1],pin2[2]}
+end
+</code>
+</pre>
+</div>
+
+</body>
+</html>

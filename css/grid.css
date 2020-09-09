@@ -5,10 +5,10 @@
     grid-column-gap: 50px;
     grid-row-gap: 50px;
     padding: 10px;
-  }
+}
 .grid-item {
-    background-color: #919094;
-    border: 3px solid #272729;
+    background-color: #53354a;
+    border: 3px solid #1f1d24;
     padding: 0px;
     font-size: 30px;
     text-align: center;

@@ -2,7 +2,6 @@
 <html lang="en-GB" style="height:100%;">
 
 <link href="https://ketrab2004.github.io/website/css/main.css" rel="stylesheet">
-<link href="https://ketrab2004.github.io/website/css/topnav.css" rel="stylesheet">
 <link href="https://ketrab2004.github.io/website/css/404.css" rel="stylesheet">
 <link rel="icon" href="https://ketrab2004.github.io/website/images/TabIcon.png">
 <title>404 page not found - ketrab2004</title>
@@ -19,21 +18,24 @@
 
 
 <body>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!--Google Analytics-->
+<div id="google-analytics-placeholder"></div>
 
-<div class="topnav">
-    <a onclick="back()" style="cursor: pointer; border-radius: 15px;">Back</a>
-    <a style="opacity: 0;"></a>
-    <a href="https://ketrab2004.github.io/website">Home</a>
-    <a href="https://ketrab2004.github.io/website/projects">Projects</a>
-    <a href="https://ketrab2004.github.io/website/about">About</a>
-</div>
+<script>$(function(){$("#google-analytics-placeholder").load("html/googleAnalytics.html")})</script>
+<!--end of Google Analytics-->
+
+<!--Navigation bar-->
+<div id="nav-placeholder"></div>
+
+<script>$(function(){$("#nav-placeholder").load("html/navBarwithBack.html")})</script>
+<!--end of Navigation bar-->
 
 <h1 class="top">404</h1>
 <d class="mes">Page not found.</d>
 <a class="mes" href="https://www.githubstatus.com/#past-incidents" target="_blank">Github Pages status.</a>
 
 <br>
-
 
 <img src="/website/images/SkyHighQuality.png" class="pic0">
 
@@ -44,8 +46,6 @@
 
     <img src="https://cdn.onlinewebfonts.com/svg/img_561239.png" class="pic1">
 </container>
-
-<script src="https://ketrab2004.github.io/website/js/back.js"></script>
 
 </body>
 </html>

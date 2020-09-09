@@ -8,7 +8,7 @@
 .mes {
     text-align: center;
     font-size: 30px;
-    color: #7b7b86;
+    color: #a39a8e;
     font-family: monospace;
     display: block;
 }
@@ -37,7 +37,7 @@
 .pic0 {
     border-radius: 50px;
     width: 30%;
-    border: 5px solid #2c2c31;
+    border: 5px solid #1f1d24;
 }
 .pic1Box {
     display: inline-block;
